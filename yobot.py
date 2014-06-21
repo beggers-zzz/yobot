@@ -12,6 +12,9 @@ class Yobot(irc.IRCClient):
         
     nickname = "yobot"
 
+    def __init__(self):
+        self.shut_up = False
+
     def connectionMade(self):
         irc.IRCClient.connectionMade(self)
 
@@ -22,9 +25,14 @@ class Yobot(irc.IRCClient):
         self.join(self.factory.channel)
 
     def privmsg(self, user, channel, msg):
-        if msg == "YO":
-            print "YO"  # 1337 logging
+        if msg == "YO" and not self.shut_up:
             self.msg(channel, "YO")
+        elif msg == "SHUT UP YOBOT":
+            self.msg(channel, "You got it, fleshbag")
+            self.shut_up = True
+        elif msg[0:9] == "YO, YOBOT":
+            self.msg(channel, "What's up, boss?")
+            self.shut_up = False
 
 class YobotFactory(protocol.ClientFactory):
 
