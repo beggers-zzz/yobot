@@ -27,7 +27,7 @@ class Yobot(irc.IRCClient):
     def privmsg(self, user, channel, msg):
         if msg == "YO" and not self.shut_up:
             self.msg(channel, "YO")
-        elif msg == "SHUT UP YOBOT":
+        elif msg == "SHUT UP YOBOT" and not self.shut_up:
             self.msg(channel, "You got it, fleshbag.")
             self.shut_up = True
         elif msg[0:9] == "YO, YOBOT":
