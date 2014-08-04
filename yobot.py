@@ -1,6 +1,7 @@
 # Ben Eggers
 # Much of this code was borrowed, which means you can steal it, too.
 
+
 from twisted.words.protocols import irc
 from twisted.internet import reactor, protocol
 from twisted.python import log
